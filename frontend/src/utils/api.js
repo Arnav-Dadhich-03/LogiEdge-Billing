@@ -1,9 +1,18 @@
 import axios from 'axios';
 
+// 1. Define the root domain (Live Render URL or Local Node Server)
+// Make sure you do NOT put a trailing slash at the end of your Render URL in Vercel.
+const DOMAIN = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
+// 2. Create the Axios instance with the full base URL
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || '/api',
+  baseURL: `${DOMAIN}/api`, // This ensures every call starts with http://.../api
   headers: { 'Content-Type': 'application/json' },
 });
+
+// ==========================================
+// API Endpoints
+// ==========================================
 
 // Customers
 export const getCustomers = () => API.get('/customers');
